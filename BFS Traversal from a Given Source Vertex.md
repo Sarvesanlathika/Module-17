@@ -1,35 +1,83 @@
-# Ex. No: 17B - BFS Traversal from a Given Source Vertex
+# Ex. No: 17A - Adjacency List Representation of a Graph
+# AIM:
+To write a Python program to demonstrate the adjacency list representation of the given graph.
 
-## AIM:
-To write a Python program to **print BFS traversal** from a given source vertex.
+# ALGORITHM:
+Step 1: Start the program.
 
-## ALGORITHM:
+Step 2: Define a class AdjNode to create a node for each adjacent vertex:
 
-**Step 1**: Start the program.
+Store the vertex number.
+Store the link to the next adjacent node.
+Step 3: Define a class Graph to create the graph using adjacency lists:
 
-**Step 2**: Create a graph using **adjacency list representation**.
+Initialize the number of vertices.
+Create a list (array) of size V, where each element is initially None.
+Step 4: Define a method add_edge(src, dest) to:
 
-**Step 3**: Add edges between vertices using the `addEdge()` method.
+Add dest to the adjacency list of src.
+Add src to the adjacency list of dest (for undirected graphs).
+Step 5: Define a method print_graph() to:
 
-**Step 4**: Implement the `BFS()` function:
-- Initialize all vertices as **not visited**.
-- Use a **queue** to track vertices for traversal.
-- Mark the **starting vertex** as visited and enqueue it.
-- Dequeue a vertex, process it, and enqueue all its **adjacent unvisited vertices** while marking them as visited.
+Traverse the adjacency list of each vertex.
+Print the vertex and its adjacent nodes.
+Step 6: In the main program:
 
-**Step 5**: Input the **starting vertex** and perform BFS traversal from it.
+Create a Graph object with V vertices.
+Call add_edge() for all desired edges.
+Call print_graph() to display the adjacency list.
+Step 7: End the program.
 
-**Step 6**: Print the vertices in **BFS order**.
+# PYTHON PROGRAM
+~~~
+Reg.No: 212222060229
+Name: Sarvesan lathika
 
-**Step 7**: End the program.
+class AdjNode:
+	def __init__(self, data):
+		self.vertex = data
+		self.next = None
 
-## PYTHON PROGRAM
+class Graph:
+	def __init__(self, vertices):
+		self.V = vertices
+		self.graph = [None] * self.V
 
-```
-ENTER YOUR CODE HERE
-```
+	def add_edge(self, src, dest):
 
-## OUTPUT
+		node = AdjNode(dest)
+		node.next = self.graph[src]
+		self.graph[src] = node
 
+		node = AdjNode(src)
+		node.next = self.graph[dest]
+		self.graph[dest] = node
 
-## RESULT
+	
+	def print_graph(self):
+	    for i in range(V):
+	        print(f"Adjacency list of vertex {i}\n head ", end="")
+	        temp=self.graph[i]
+	        while temp:
+	            print(f"-> {temp.vertex} ", end="")
+	            temp=temp.next
+	        print("\n")
+
+if __name__ == "__main__":
+	V = 5
+	graph = Graph(V)
+	graph.add_edge(0, 1)
+	graph.add_edge(0, 4)
+	graph.add_edge(1, 2)
+	graph.add_edge(1, 3)
+	graph.add_edge(1, 4)
+	graph.add_edge(2, 3)
+	graph.add_edge(3, 4)
+
+	graph.print_graph()
+~~~
+# OUTPUT
+<img width="717" height="420" alt="image" src="https://github.com/user-attachments/assets/0430e2cd-3f80-41cb-b8eb-29b19c25d913" />
+
+# RESULT
+Hence, The program is successfully executed and the adjacency list representation of the given graph is verified.
